@@ -1,0 +1,65 @@
+manifest-version: 1
+study:
+  title: "CFF/package-manifest version drift in recent JOSS software"
+  type: "exploratory pilot benchmark"
+  research-question: >-
+    Among the first 20 papers displayed in JOSS issue 122, what proportion of
+    eligible GitHub repositories contain actionable top-level CITATION.cff and
+    package-manifest version drift, and can a deterministic checker recover the labels?
+  freeze-date: "2026-07-24"
+  timezone: "Asia/Taipei"
+  random-seed: 0
+sources:
+  - name: "JOSS issue 122 ordered table of contents"
+    url: "https://joss.theoj.org/toc/issue/122"
+    role: "sampling frame"
+  - name: "Public GitHub repository root metadata"
+    role: "version and scope evidence"
+datasets:
+  - path: "data/raw/sampling-frame.json"
+    sha256: "152e8abd9b0aa255e3cc320ab2f7229f68291ddc8db917d96a38c39a0c142e76"
+  - path: "data/raw/source-records.json"
+    sha256: "566c3b5b36136e2ea841787b9e7b9f3f988d081a64f721e4df4502d18d10a745"
+outputs:
+  - path: "results/published/pilot-results-deterministic.json"
+    expected-sha256: "c0a0bf18b1f8064f5fb3ba1c8e9ae6451a0d48d7931edb80d7510e56215a0725"
+  - path: "results/published/screening.csv"
+    sha256: "d78b46b2257c060bccf848acce0ca6ef8f656ab29456f955c5eb958536ab73da"
+commands:
+  install: "python -m pip install -e '.[dev]'"
+  lint: "ruff check ."
+  format-check: "ruff format --check ."
+  type-check: "mypy src"
+  test: "pytest --cov"
+  build: "python -m build"
+  reproduce: "PYTHONHASHSEED=0 cff-drift-guard benchmark --output-dir reproduced-results"
+  determinism: >-
+    PYTHONHASHSEED=0 cff-drift-guard benchmark --output-dir /tmp/a &&
+    PYTHONHASHSEED=321 cff-drift-guard benchmark --output-dir /tmp/b &&
+    diff -u /tmp/a/pilot-results-deterministic.json /tmp/b/pilot-results-deterministic.json
+metrics:
+  - eligible fraction
+  - actionable drift prevalence
+  - Wilson 95% interval
+  - precision
+  - recall
+  - F1
+  - false positives and false negatives
+  - runtime
+  - peak memory
+  - deterministic output hash
+environment:
+  local-python: "3.13.5"
+  ci-python: ["3.11", "3.13"]
+  operating-system: "Linux container; GitHub Actions ubuntu-latest"
+  cpu: "5 logical CPUs available locally"
+  memory: "approximately 5.9 GiB RAM; no swap"
+  gpu: "none"
+known-limitations:
+  - "First 20 papers from one JOSS issue; not a probability sample."
+  - "Only two repositories met strict static same-scope eligibility."
+  - "No eligible negative case; specificity is not estimable."
+  - "Current default branches observed after publication, not frozen publication tags."
+  - "One manual reviewer; no blinded independent adjudication."
+  - "Dynamic versions and nested monorepos are deliberately not inferred."
+verdict: "INCONCLUSIVE"
