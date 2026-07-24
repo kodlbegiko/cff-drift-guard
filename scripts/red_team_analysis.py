@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Generate machine-readable adversarial checks for the pilot conclusions."""
+
 from __future__ import annotations
 
 import json
@@ -15,7 +16,12 @@ versioned_cff = [r for r in cff if r["cff_version"]]
 drifts = [r for r in eligible if r["manual_label"] == "DRIFT"]
 
 result = {
-    "sample_concentration": {"journal":"JOSS", "issue":122, "month":"2026-06", "sample_n":len(records)},
+    "sample_concentration": {
+        "journal": "JOSS",
+        "issue": 122,
+        "month": "2026-06",
+        "sample_n": len(records),
+    },
     "prevalence_bounds": {
         "eligible_observed": len(drifts) / len(eligible),
         "lower_if_all_other_github_repos_non_drift": len(drifts) / len(github),
@@ -32,18 +38,23 @@ result = {
     },
     "stronger_baseline": {
         "description": "A direct two-file raw-string comparator is algorithmically equivalent to exact-mode checking on eligible records.",
-        "consequence": "The contribution is the explicit protocol, exclusions, benchmark records, CI integration, and audit trail—not a novel comparison algorithm."
+        "consequence": "The contribution is the explicit protocol, exclusions, benchmark records, CI integration, and audit trail—not a novel comparison algorithm.",
     },
     "maintenance": {
         "supported_manifest_formats": 6,
-        "known_unhandled_classes": ["nested monorepo package manifests", "runtime-derived versions", "language-specific version modules", "release/tag history"],
+        "known_unhandled_classes": [
+            "nested monorepo package manifests",
+            "runtime-derived versions",
+            "language-specific version modules",
+            "release/tag history",
+        ],
     },
     "conclusion_adjustments": [
         "Do not estimate population prevalence from two eligible cases.",
         "Do not claim specificity or false-positive control from an eligible set with zero negative cases.",
         "Treat the two mismatches as confirmed case findings, not a representative rate.",
-        "Treat CFF version missingness as a secondary descriptive result because version is optional in CFF 1.2.0."
-    ]
+        "Treat CFF version missingness as a secondary descriptive result because version is optional in CFF 1.2.0.",
+    ],
 }
 OUT.parent.mkdir(parents=True, exist_ok=True)
 OUT.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")

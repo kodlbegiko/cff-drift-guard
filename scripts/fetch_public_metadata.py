@@ -5,6 +5,7 @@ This acquisition helper is intentionally separate from the frozen pilot. It is
 not needed to reproduce published metrics because the exact extracted records
 and blob SHAs are committed. Set GITHUB_TOKEN to increase rate limits.
 """
+
 from __future__ import annotations
 
 import argparse
@@ -14,7 +15,15 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-FILES = ["CITATION.cff", "pyproject.toml", "DESCRIPTION", "Cargo.toml", "Project.toml", "package.json", "pubspec.yaml"]
+FILES = [
+    "CITATION.cff",
+    "pyproject.toml",
+    "DESCRIPTION",
+    "Cargo.toml",
+    "Project.toml",
+    "package.json",
+    "pubspec.yaml",
+]
 
 
 def fetch(repo: str, path: str) -> dict[str, object] | None:

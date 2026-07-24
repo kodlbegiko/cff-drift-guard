@@ -49,9 +49,16 @@ def _toml(path: Path) -> dict[str, Any]:
 def parse_pyproject(path: Path) -> ManifestVersion:
     data = _toml(path)
     project = data.get("project", {})
-    dynamic = "version" in project.get("dynamic", []) or "version" in data.get("tool", {}).get("setuptools", {}).get("dynamic", {})
+    dynamic = "version" in project.get("dynamic", []) or "version" in data.get("tool", {}).get(
+        "setuptools", {}
+    ).get("dynamic", {})
     version = project.get("version")
-    return ManifestVersion(path.name, str(version) if version is not None else None, dynamic=dynamic, package_name=project.get("name"))
+    return ManifestVersion(
+        path.name,
+        str(version) if version is not None else None,
+        dynamic=dynamic,
+        package_name=project.get("name"),
+    )
 
 
 def parse_cargo(path: Path) -> ManifestVersion:
@@ -62,19 +69,25 @@ def parse_cargo(path: Path) -> ManifestVersion:
     version = package.get("version")
     if isinstance(version, dict):
         return ManifestVersion(path.name, None, dynamic=True, package_name=package.get("name"))
-    return ManifestVersion(path.name, str(version) if version is not None else None, package_name=package.get("name"))
+    return ManifestVersion(
+        path.name, str(version) if version is not None else None, package_name=package.get("name")
+    )
 
 
 def parse_project_toml(path: Path) -> ManifestVersion:
     data = _toml(path)
     version = data.get("version")
-    return ManifestVersion(path.name, str(version) if version is not None else None, package_name=data.get("name"))
+    return ManifestVersion(
+        path.name, str(version) if version is not None else None, package_name=data.get("name")
+    )
 
 
 def parse_package_json(path: Path) -> ManifestVersion:
     data = json.loads(path.read_text(encoding="utf-8"))
     version = data.get("version")
-    return ManifestVersion(path.name, str(version) if version is not None else None, package_name=data.get("name"))
+    return ManifestVersion(
+        path.name, str(version) if version is not None else None, package_name=data.get("name")
+    )
 
 
 def parse_pubspec(path: Path) -> ManifestVersion:
@@ -90,7 +103,9 @@ def parse_pubspec(path: Path) -> ManifestVersion:
             fields[match.group(1)] = _unquote(match.group(2))
     unpublished = fields.get("publish_to", "").lower() == "none"
     ambiguous = workspace and unpublished and "version" not in fields
-    return ManifestVersion(path.name, fields.get("version"), ambiguous=ambiguous, package_name=fields.get("name"))
+    return ManifestVersion(
+        path.name, fields.get("version"), ambiguous=ambiguous, package_name=fields.get("name")
+    )
 
 
 def parse_description(path: Path) -> ManifestVersion:

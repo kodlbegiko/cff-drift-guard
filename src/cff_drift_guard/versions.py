@@ -21,7 +21,9 @@ def core_version(value: str) -> str:
     Non-numeric cores are returned lower-cased after exact normalization.
     """
     normalized = exact_version(value).split("+", 1)[0]
-    normalized = re.sub(r"[._-](?:dev|alpha|a|beta|b|rc|pre|post)\.?\d*$", "", normalized, flags=re.I)
+    normalized = re.sub(
+        r"[._-](?:dev|alpha|a|beta|b|rc|pre|post)\.?\d*$", "", normalized, flags=re.I
+    )
     parts = normalized.split(".")
     if all(part.isdigit() for part in parts) and all(part != "" for part in parts):
         while len(parts) > 1 and int(parts[-1]) == 0:

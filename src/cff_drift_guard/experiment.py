@@ -52,7 +52,9 @@ def run_experiment(source: Path, output_dir: Path) -> dict[str, Any]:
     peak_rss_kib = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
 
     cff_present = sum(bool(record["cff_present"]) for record in records)
-    cff_version_present = sum(bool(record.get("cff_version")) for record in records if record["cff_present"])
+    cff_version_present = sum(
+        bool(record.get("cff_version")) for record in records if record["cff_present"]
+    )
     result: dict[str, Any] = {
         "study_type": "exploratory pilot benchmark",
         "source_sha256": _sha256(source),
@@ -72,14 +74,23 @@ def run_experiment(source: Path, output_dir: Path) -> dict[str, Any]:
         "sensitivity": {
             "exact_drift_n": sum(exact_predictions),
             "core_drift_n": sum(core_predictions),
-            "include_scope_ambiguous_as_non_drift_n": len(eligible) + sum(bool(r.get("scope_ambiguous")) for r in records),
+            "include_scope_ambiguous_as_non_drift_n": len(eligible)
+            + sum(bool(r.get("scope_ambiguous")) for r in records),
         },
         "runtime_seconds": elapsed,
         "tracemalloc_peak_bytes": peak,
         "tracemalloc_current_bytes": current,
         "peak_rss_kib": peak_rss_kib,
         "stopping_rule_triggered": len(eligible) < 10,
-        "primary_verdict": "INCONCLUSIVE" if len(eligible) < 10 else ("SUPPORTED" if len(drift) / len(eligible) >= 0.2 and exact_metrics["precision"] >= 0.9 and exact_metrics["recall"] >= 0.8 else "NOT SUPPORTED"),
+        "primary_verdict": "INCONCLUSIVE"
+        if len(eligible) < 10
+        else (
+            "SUPPORTED"
+            if len(drift) / len(eligible) >= 0.2
+            and exact_metrics["precision"] >= 0.9
+            and exact_metrics["recall"] >= 0.8
+            else "NOT SUPPORTED"
+        ),
         "environment": {"pythonhashseed": os.environ.get("PYTHONHASHSEED", "unset")},
     }
 
@@ -91,10 +102,18 @@ def run_experiment(source: Path, output_dir: Path) -> dict[str, Any]:
         writer.writeheader()
         writer.writerows(records)
     deterministic = dict(result)
-    for key in ["runtime_seconds", "tracemalloc_peak_bytes", "tracemalloc_current_bytes", "peak_rss_kib", "environment"]:
+    for key in [
+        "runtime_seconds",
+        "tracemalloc_peak_bytes",
+        "tracemalloc_current_bytes",
+        "peak_rss_kib",
+        "environment",
+    ]:
         deterministic.pop(key, None)
     deterministic_path = output_dir / "pilot-results-deterministic.json"
-    deterministic_path.write_text(json.dumps(deterministic, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    deterministic_path.write_text(
+        json.dumps(deterministic, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
     result["deterministic_output_sha256"] = _sha256(deterministic_path)
     result_json.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     return result

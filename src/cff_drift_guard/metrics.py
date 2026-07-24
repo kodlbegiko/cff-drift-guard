@@ -4,10 +4,12 @@ from __future__ import annotations
 
 import math
 from collections import Counter
-from typing import Iterable
+from collections.abc import Iterable
 
 
-def wilson_interval(successes: int, total: int, z: float = 1.959963984540054) -> tuple[float, float]:
+def wilson_interval(
+    successes: int, total: int, z: float = 1.959963984540054
+) -> tuple[float, float]:
     if total == 0:
         return (0.0, 1.0)
     p = successes / total
@@ -17,7 +19,9 @@ def wilson_interval(successes: int, total: int, z: float = 1.959963984540054) ->
     return (max(0.0, centre - margin), min(1.0, centre + margin))
 
 
-def classification_metrics(truth: Iterable[bool], predicted: Iterable[bool]) -> dict[str, float | int]:
+def classification_metrics(
+    truth: Iterable[bool], predicted: Iterable[bool]
+) -> dict[str, float | int]:
     pairs = list(zip(truth, predicted, strict=True))
     tp = sum(t and p for t, p in pairs)
     fp = sum((not t) and p for t, p in pairs)
@@ -26,8 +30,22 @@ def classification_metrics(truth: Iterable[bool], predicted: Iterable[bool]) -> 
     precision = tp / (tp + fp) if tp + fp else 0.0
     recall = tp / (tp + fn) if tp + fn else 0.0
     f1 = 2 * precision * recall / (precision + recall) if precision + recall else 0.0
-    return {"tp": tp, "fp": fp, "fn": fn, "tn": tn, "precision": precision, "recall": recall, "f1": f1}
+    return {
+        "tp": tp,
+        "fp": fp,
+        "fn": fn,
+        "tn": tn,
+        "precision": precision,
+        "recall": recall,
+        "f1": f1,
+    }
 
 
 def exclusion_counts(records: list[dict[str, object]]) -> dict[str, int]:
-    return dict(sorted(Counter(str(r["exclusion_reason"]) for r in records if r.get("exclusion_reason")).items()))
+    return dict(
+        sorted(
+            Counter(
+                str(r["exclusion_reason"]) for r in records if r.get("exclusion_reason")
+            ).items()
+        )
+    )
