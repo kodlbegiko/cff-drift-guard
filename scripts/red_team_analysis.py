@@ -37,8 +37,14 @@ result = {
         "cff_version_present_fraction": len(versioned_cff) / len(cff),
     },
     "stronger_baseline": {
-        "description": "A direct two-file raw-string comparator is algorithmically equivalent to exact-mode checking on eligible records.",
-        "consequence": "The contribution is the explicit protocol, exclusions, benchmark records, CI integration, and audit trail—not a novel comparison algorithm.",
+        "description": (
+            "A direct two-file raw-string comparator is algorithmically equivalent "
+            "to exact-mode checking on eligible records."
+        ),
+        "consequence": (
+            "The contribution is the explicit protocol, exclusions, benchmark records, "
+            "CI integration, and audit trail—not a novel comparison algorithm."
+        ),
     },
     "maintenance": {
         "supported_manifest_formats": 6,
@@ -51,9 +57,15 @@ result = {
     },
     "conclusion_adjustments": [
         "Do not estimate population prevalence from two eligible cases.",
-        "Do not claim specificity or false-positive control from an eligible set with zero negative cases.",
+        (
+            "Do not claim specificity or false-positive control from an eligible set "
+            "with zero negative cases."
+        ),
         "Treat the two mismatches as confirmed case findings, not a representative rate.",
-        "Treat CFF version missingness as a secondary descriptive result because version is optional in CFF 1.2.0.",
+        (
+            "Treat CFF version missingness as a secondary descriptive result because "
+            "version is optional in CFF 1.2.0."
+        ),
     ],
 }
 OUT.parent.mkdir(parents=True, exist_ok=True)
