@@ -25,17 +25,17 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     if args.command == "check":
-        result = analyze_repository(args.path)
-        rendered = json.dumps(result.to_dict(), indent=2, sort_keys=True)
+        analysis = analyze_repository(args.path)
+        rendered = json.dumps(analysis.to_dict(), indent=2, sort_keys=True)
         print(rendered)
         if args.json_out:
             args.json_out.parent.mkdir(parents=True, exist_ok=True)
             args.json_out.write_text(rendered + "\n", encoding="utf-8")
-        if result.status in {"MATCH", "NORMALIZED_MATCH"}:
+        if analysis.status in {"MATCH", "NORMALIZED_MATCH"}:
             return 0
-        if result.status == "DRIFT":
+        if analysis.status == "DRIFT":
             return 1
         return 2
-    result = run_experiment(args.source, args.output_dir)
-    print(json.dumps(result, indent=2, sort_keys=True))
-    return 0 if result["primary_verdict"] != "BLOCKED" else 3
+    experiment_result = run_experiment(args.source, args.output_dir)
+    print(json.dumps(experiment_result, indent=2, sort_keys=True))
+    return 0 if experiment_result["primary_verdict"] != "BLOCKED" else 3
