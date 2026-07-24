@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - research/cff-version-drift-pilot
+  pull_request:
+    branches:
+      - main
 
 permissions:
   contents: write
@@ -14,6 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: research/cff-version-drift-pilot
 
       - name: Reconstruct repository payload
         shell: bash
@@ -61,4 +66,4 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "feat: publish reproducible CFF drift pilot"
-          git push origin HEAD:${GITHUB_REF_NAME}
+          git push origin HEAD:research/cff-version-drift-pilot
