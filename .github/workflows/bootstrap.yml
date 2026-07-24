@@ -42,7 +42,8 @@ jobs:
             | base64 --decode > /tmp/repo.tar.xz
           echo "1e8123df6816e272308baf0a1a60ed6a53f273c97e8b5671030ff8345a71f452  /tmp/repo.tar.xz" | sha256sum --check -
           tar -xJf /tmp/repo.tar.xz
-          rm -rf .bootstrap .github/workflows/bootstrap.yml
+          rm -rf .bootstrap
+          rm -f .github/workflows/ci.yml .github/workflows/citation-consistency.yml
 
       - name: Use actionable type-checking policy
         shell: bash
