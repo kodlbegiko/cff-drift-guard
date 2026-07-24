@@ -1,0 +1,5 @@
+scripts/red_team_analysis.py:40:101: E501 Line too long (139 > 100)
+scripts/red_team_analysis.py:41:101: E501 Line too long (165 > 100)
+scripts/red_team_analysis.py:54:101: E501 Line too long (108 > 100)
+scripts/red_team_analysis.py:56:101: E501 Line too long (116 > 100)
+Found 4 errors.
