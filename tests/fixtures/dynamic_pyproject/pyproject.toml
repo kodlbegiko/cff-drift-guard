@@ -1,0 +1,4 @@
+[project]
+name = "dynamic"
+dynamic = ["version"]
+[tool.setuptools_scm]

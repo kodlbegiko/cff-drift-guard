@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+title: "cff-drift-guard: a pilot benchmark for software citation version drift"
+message: "Please cite this repository and archived release when reusing the benchmark."
+type: software
+version: 0.1.0
+date-released: 2026-07-24
+license: MIT
+repository-code: "https://github.com/kodlbegiko/cff-drift-guard"
+authors:
+  - family-names: Liu
+    given-names: Sean

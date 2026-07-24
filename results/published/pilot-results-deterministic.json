@@ -1,0 +1,57 @@
+{
+  "baseline_presence_only": {
+    "f1": 0.0,
+    "fn": 2,
+    "fp": 0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "tn": 0,
+    "tp": 0
+  },
+  "cff_present_n": 14,
+  "cff_version_completeness": 0.35714285714285715,
+  "cff_version_present_n": 5,
+  "checker_core": {
+    "f1": 1.0,
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tn": 0,
+    "tp": 2
+  },
+  "checker_exact": {
+    "f1": 1.0,
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tn": 0,
+    "tp": 2
+  },
+  "drift_n": 2,
+  "drift_prevalence": 1.0,
+  "drift_wilson_95": [
+    0.34238022750665303,
+    1.0
+  ],
+  "eligible_n": 2,
+  "exclusion_counts": {
+    "cff_missing": 5,
+    "cff_version_missing": 9,
+    "manifest_dynamic": 2,
+    "non_github": 1,
+    "scope_ambiguous": 1
+  },
+  "github_n": 19,
+  "primary_verdict": "INCONCLUSIVE",
+  "sample_n": 20,
+  "sensitivity": {
+    "core_drift_n": 2,
+    "exact_drift_n": 2,
+    "include_scope_ambiguous_as_non_drift_n": 4
+  },
+  "source_sha256": "566c3b5b36136e2ea841787b9e7b9f3f988d081a64f721e4df4502d18d10a745",
+  "stopping_rule_triggered": true,
+  "study_type": "exploratory pilot benchmark"
+}

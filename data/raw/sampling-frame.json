@@ -1,0 +1,22 @@
+[
+  {"order":1,"doi":"10.21105/joss.10003","title":"MyMesh","repository":"BU-SMBL/mymesh","host":"github"},
+  {"order":2,"doi":"10.21105/joss.09310","title":"Finitewave","repository":"finitewave/Finitewave","host":"github"},
+  {"order":3,"doi":"10.21105/joss.09930","title":"CGView.js","repository":"sciguy/cgview-js","host":"github"},
+  {"order":4,"doi":"10.21105/joss.10136","title":"Vibrant","repository":"lstsgroup/vibrant","host":"github"},
+  {"order":5,"doi":"10.21105/joss.10231","title":"nyaml","repository":"FAIRmat-NFDI/nyaml","host":"github"},
+  {"order":6,"doi":"10.21105/joss.09628","title":"FAIRLinked","repository":"cwru-sdle/FAIRLinked","host":"github"},
+  {"order":7,"doi":"10.21105/joss.09633","title":"Cosmologix","repository":"gitlab.in2p3.fr/cosmologix","host":"gitlab"},
+  {"order":8,"doi":"10.21105/joss.10278","title":"Fetpype","repository":"fetpype/fetpype","host":"github"},
+  {"order":9,"doi":"10.21105/joss.10425","title":"Liblsl.dart","repository":"NexusDynamic/liblsl.dart","host":"github"},
+  {"order":10,"doi":"10.21105/joss.09598","title":"TNC","repository":"qc-tum/TNC","host":"github"},
+  {"order":11,"doi":"10.21105/joss.09606","title":"site-analysis","repository":"bjmorgan/site-analysis","host":"github"},
+  {"order":12,"doi":"10.21105/joss.10380","title":"Chemiscope","repository":"lab-cosmo/chemiscope","host":"github"},
+  {"order":13,"doi":"10.21105/joss.10303","title":"scpviz","repository":"gnaprs/scpviz","host":"github"},
+  {"order":14,"doi":"10.21105/joss.09736","title":"ScrollStats","repository":"tamu-edu/scrollstats","host":"github"},
+  {"order":15,"doi":"10.21105/joss.09944","title":"Solshade","repository":"amanchokshi/solshade","host":"github"},
+  {"order":16,"doi":"10.21105/joss.09924","title":"TikhonovFenichelReductions.jl","repository":"jo-ap/TikhonovFenichelReductions.jl","host":"github"},
+  {"order":17,"doi":"10.21105/joss.08332","title":"pangeo-fish","repository":"pangeo-fish/pangeo-fish","host":"github"},
+  {"order":18,"doi":"10.21105/joss.10490","title":"sEEG-Suite","repository":"brainstorm-tools/brainstorm3","host":"github"},
+  {"order":19,"doi":"10.21105/joss.10245","title":"PAI","repository":"NutritionalLungImmunity/PAI","host":"github"},
+  {"order":20,"doi":"10.21105/joss.09695","title":"stylo","repository":"ncezid-biome/stylo","host":"github"}
+]

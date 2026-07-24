@@ -1,0 +1,41 @@
+{
+  "conclusion_adjustments": [
+    "Do not estimate population prevalence from two eligible cases.",
+    "Do not claim specificity or false-positive control from an eligible set with zero negative cases.",
+    "Treat the two mismatches as confirmed case findings, not a representative rate.",
+    "Treat CFF version missingness as a secondary descriptive result because version is optional in CFF 1.2.0."
+  ],
+  "identifiability": {
+    "cff_version_optional_and_missing_n": 9,
+    "cff_version_present_fraction": 0.35714285714285715,
+    "eligible_n": 2,
+    "negative_n": 0,
+    "positive_n": 2,
+    "specificity_estimable": false
+  },
+  "maintenance": {
+    "known_unhandled_classes": [
+      "nested monorepo package manifests",
+      "runtime-derived versions",
+      "language-specific version modules",
+      "release/tag history"
+    ],
+    "supported_manifest_formats": 6
+  },
+  "prevalence_bounds": {
+    "eligible_observed": 1.0,
+    "lower_if_all_other_cff_repos_non_drift": 0.14285714285714285,
+    "lower_if_all_other_github_repos_non_drift": 0.10526315789473684,
+    "upper_if_all_ineligible_github_repos_drift": 1.0
+  },
+  "sample_concentration": {
+    "issue": 122,
+    "journal": "JOSS",
+    "month": "2026-06",
+    "sample_n": 20
+  },
+  "stronger_baseline": {
+    "consequence": "The contribution is the explicit protocol, exclusions, benchmark records, CI integration, and audit trail\u2014not a novel comparison algorithm.",
+    "description": "A direct two-file raw-string comparator is algorithmically equivalent to exact-mode checking on eligible records."
+  }
+}

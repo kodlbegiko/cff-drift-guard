@@ -1,0 +1,4 @@
+name: metapackage
+publish_to: none
+workspace:
+  - packages/core
