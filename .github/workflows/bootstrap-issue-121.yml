@@ -35,13 +35,6 @@ jobs:
           base64 --decode /tmp/issue-121.b64 > /tmp/issue-121.tar.gz
           sha256sum /tmp/issue-121.tar.gz | tee /tmp/bootstrap-diagnostic/archive-hash.txt
           gzip -t /tmp/issue-121.tar.gz
-      - name: Upload bootstrap diagnostic
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: issue-121-bootstrap-diagnostic
-          path: /tmp/bootstrap-diagnostic
-          if-no-files-found: error
       - name: Materialize non-workflow research payload
         run: |
           tar -xzf /tmp/issue-121.tar.gz
@@ -49,10 +42,29 @@ jobs:
           git checkout HEAD -- .github/workflows/ci.yml .github/workflows/issue-121-acquisition.yml
           rm -f .github/workflows/bootstrap-issue-121.yml
           git checkout HEAD -- .github/workflows/bootstrap-issue-121.yml
-      - name: Commit research outputs
+      - name: Attempt research commit
+        id: commit
+        continue-on-error: true
         run: |
+          set +e
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git status --short > /tmp/bootstrap-diagnostic/git-status.txt
           git add -A
-          git commit -m "research: publish issue-121 external validation"
-          git push origin HEAD:research/issue-121-specificity-validation
+          git diff --cached --name-status > /tmp/bootstrap-diagnostic/staged-files.txt
+          git commit -m "research: publish issue-121 external validation" > /tmp/bootstrap-diagnostic/git-commit.txt 2>&1
+          commit_rc=$?
+          git push origin HEAD:research/issue-121-specificity-validation > /tmp/bootstrap-diagnostic/git-push.txt 2>&1
+          push_rc=$?
+          printf 'commit_rc=%s\npush_rc=%s\n' "$commit_rc" "$push_rc" > /tmp/bootstrap-diagnostic/return-codes.txt
+          exit "$push_rc"
+      - name: Upload bootstrap diagnostic
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: issue-121-bootstrap-diagnostic
+          path: /tmp/bootstrap-diagnostic
+          if-no-files-found: error
+      - name: Enforce successful push
+        if: steps.commit.outcome != 'success'
+        run: exit 1
