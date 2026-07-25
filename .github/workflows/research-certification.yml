@@ -1,0 +1,91 @@
+name: research certification
+
+on:
+  push:
+    branches:
+      - research/issue-121-specificity-validation
+    paths:
+      - .github/workflows/research-certification.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  certify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/issue-121-specificity-validation
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e ".[dev]"
+      - run: ruff check .
+      - run: ruff format --check .
+      - run: mypy src
+      - name: Test with coverage
+        run: pytest --cov --cov-report=term-missing --cov-report=json:/tmp/coverage.json | tee /tmp/pytest.txt
+      - run: python -m build
+      - name: Check original pilot determinism
+        run: |
+          PYTHONHASHSEED=0 cff-drift-guard benchmark --output-dir /tmp/results-a
+          PYTHONHASHSEED=321 cff-drift-guard benchmark --output-dir /tmp/results-b
+          diff -u /tmp/results-a/pilot-results-deterministic.json /tmp/results-b/pilot-results-deterministic.json
+      - name: Check issue-121 determinism
+        run: |
+          PYTHONHASHSEED=0 python scripts/evaluate_issue_121_specificity.py --source data/issue-121/acquisition-deterministic.json --adjudications data/issue-121/adjudications.json --output-dir /tmp/issue121-a
+          PYTHONHASHSEED=321 python scripts/evaluate_issue_121_specificity.py --source data/issue-121/acquisition-deterministic.json --adjudications data/issue-121/adjudications.json --output-dir /tmp/issue121-b
+          diff -u /tmp/issue121-a/external-validation-results.json /tmp/issue121-b/external-validation-results.json
+      - name: Write certification record
+        env:
+          RUN_ID: ${{ github.run_id }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          import re
+          import sys
+          from pathlib import Path
+
+          pytest_text = Path('/tmp/pytest.txt').read_text(encoding='utf-8')
+          match = re.search(r'(\d+) passed', pytest_text)
+          if not match:
+              raise SystemExit('could not parse pytest pass count')
+          coverage = json.loads(Path('/tmp/coverage.json').read_text(encoding='utf-8'))
+          result_path = Path('/tmp/issue121-a/external-validation-results.json')
+          result = json.loads(result_path.read_text(encoding='utf-8'))
+          digest = hashlib.sha256(result_path.read_bytes()).hexdigest()
+          record = {
+              'status': 'passed',
+              'github_run_id': int(os.environ['RUN_ID']),
+              'certified_commit_sha': os.environ['HEAD_SHA'],
+              'python_version': sys.version.split()[0],
+              'tests_passed': int(match.group(1)),
+              'coverage_percent': coverage['totals']['percent_covered'],
+              'ruff_check': 'passed',
+              'ruff_format_check': 'passed',
+              'mypy': 'passed',
+              'build': 'passed',
+              'original_pilot_determinism': 'passed',
+              'issue_121_determinism': 'passed',
+              'issue_121_verdict': result['primary_verdict'],
+              'issue_121_result_sha256': digest,
+          }
+          path = Path('results/issue-121/ci-certification.json')
+          path.write_text(json.dumps(record, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          PY
+      - name: Commit certification record
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add results/issue-121/ci-certification.json
+          git commit -m "ci: record issue-121 research certification"
+          git push origin HEAD:research/issue-121-specificity-validation

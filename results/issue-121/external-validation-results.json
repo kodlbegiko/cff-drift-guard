@@ -1,0 +1,59 @@
+{
+  "adjudication_coverage": 1.0,
+  "adjudications_sha256": "3b1f16eb52db823e0f22e4299a6f8e2404f4d9b64190df30585c6e7491fa493e",
+  "baseline_all_specific": {
+    "accuracy": 0.36363636363636365,
+    "f1": 0.0,
+    "fn": 14,
+    "fp": 0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "specificity": 1.0,
+    "tn": 8,
+    "tp": 0
+  },
+  "cff_coverage": 0.5789473684210527,
+  "cff_present_n": 22,
+  "checker": {
+    "accuracy": 1.0,
+    "f1": 1.0,
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "specificity": 1.0,
+    "tn": 8,
+    "tp": 14
+  },
+  "comparable_n": 4,
+  "confirmed_cross_file_drift_n": 1,
+  "confirmed_specificity_gap_n": 14,
+  "confirmed_specificity_gap_rate": 0.6363636363636364,
+  "confirmed_specificity_gap_wilson_95": [
+    0.42951708090131013,
+    0.8026679532963387
+  ],
+  "drift_rate_among_comparable": 0.25,
+  "gates": {
+    "complete_primary_adjudication": true,
+    "gap_rate_at_least_0_30": true,
+    "minimum_cff_present": true,
+    "precision_at_least_0_80": true,
+    "recall_at_least_0_80": true
+  },
+  "github_n": 38,
+  "primary_verdict": "SUPPORTED",
+  "research_question": "Among JOSS issue-121 GitHub repositories with a root CITATION.cff, how often is software-version specificity missing or inconsistent with a unique static root package manifest?",
+  "sample_n": 39,
+  "sensitivity": {
+    "broader_missing_cff_or_specificity_gap_n": 30,
+    "broader_missing_cff_or_specificity_gap_rate_among_github": 0.7894736842105263,
+    "drift_only_rate_among_cff": 0.045454545454545456,
+    "drift_rate_among_comparable": 0.25,
+    "missing_version_only_rate_among_cff": 0.5909090909090909
+  },
+  "source_sha256": "19bb1d575069dad9d02826189977d80abaca0e2aee947988a2d802d482d28b3f",
+  "study_type": "preregistered out-of-sample exploratory validation",
+  "verdict_statement": "SUPPORTED \u2014 The pilot evidence supports the stated hypothesis within the documented scope and limitations.",
+  "version_missing_n": 13
+}

@@ -1,0 +1,41 @@
+name: issue-121 acquisition
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - research/issue-121-specificity-validation
+    paths:
+      - scripts/acquire_issue_121_specificity.py
+      - tests/test_acquire_issue_121_specificity.py
+      - .github/workflows/issue-121-acquisition.yml
+
+permissions:
+  contents: read
+
+jobs:
+  acquire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install development dependencies
+        run: python -m pip install -e ".[dev]"
+      - name: Run focused quality checks
+        run: |
+          ruff check scripts/acquire_issue_121_specificity.py tests/test_acquire_issue_121_specificity.py
+          ruff format --check scripts/acquire_issue_121_specificity.py tests/test_acquire_issue_121_specificity.py
+          pytest -q tests/test_acquire_issue_121_specificity.py
+      - name: Acquire frozen issue-121 metadata
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python scripts/acquire_issue_121_specificity.py --output-dir acquired-issue-121
+      - uses: actions/upload-artifact@v4
+        with:
+          name: issue-121-acquisition
+          path: acquired-issue-121
+          if-no-files-found: error
+          retention-days: 30

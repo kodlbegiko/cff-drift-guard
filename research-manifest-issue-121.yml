@@ -1,0 +1,73 @@
+research_question: >-
+  Among JOSS issue-121 GitHub repositories with a root CITATION.cff, how often is
+  software-version specificity missing or inconsistent with a unique static root
+  package manifest?
+study_type: preregistered out-of-sample exploratory validation
+primary_verdict: SUPPORTED
+protocol:
+  document: docs/methodology-issue-121-preregistered.md
+  minimum_cff_present: 10
+  gap_rate_threshold: 0.30
+  precision_threshold: 0.80
+  recall_threshold: 0.80
+dataset:
+  source_repository: kodlbegiko/research-readme-smoketest
+  source_ref: 5efa7e6b79dbd10b8e8439ca60bea9e43f27a00f
+  source_path: data/issue-121/raw/repository-metadata.json
+  sample_n: 39
+  github_n: 38
+  primary_denominator_n: 22
+  personal_data_saved: false
+files:
+  acquisition_deterministic:
+    path: data/issue-121/acquisition-deterministic.json
+    sha256: 19bb1d575069dad9d02826189977d80abaca0e2aee947988a2d802d482d28b3f
+  adjudications:
+    path: data/issue-121/adjudications.json
+    sha256: 3b1f16eb52db823e0f22e4299a6f8e2404f4d9b64190df30585c6e7491fa493e
+  results:
+    path: results/issue-121/external-validation-results.json
+    sha256: abbd9cf74b5defbab20f757a8b878790063a596c96ba95d548aaeb66e1211ec0
+  screening:
+    path: results/issue-121/screening.csv
+    sha256: 75c67480a4dc5ec0277a36128fb8dbda81152d09b7b452d4417075c6fafa01ae
+commands:
+  acquire_optional: >-
+    python scripts/acquire_issue_121_specificity.py --output-dir acquired-issue-121
+  reproduce: >-
+    PYTHONHASHSEED=0 python scripts/evaluate_issue_121_specificity.py
+    --source data/issue-121/acquisition-deterministic.json
+    --adjudications data/issue-121/adjudications.json
+    --output-dir reproduced-issue-121
+  deterministic_check: >-
+    PYTHONHASHSEED=321 python scripts/evaluate_issue_121_specificity.py
+    --source data/issue-121/acquisition-deterministic.json
+    --adjudications data/issue-121/adjudications.json
+    --output-dir reproduced-issue-121-seed321
+expected_outputs:
+  - external-validation-results.json
+  - screening.csv
+  - SHA256SUMS.json
+  - performance-observation.json
+metrics:
+  confirmed_specificity_gap_n: 14
+  confirmed_specificity_gap_rate: 0.6363636363636364
+  wilson_95: [0.42951708090131013, 0.8026679532963387]
+  version_missing_n: 13
+  confirmed_cross_file_drift_n: 1
+  comparable_n: 4
+  precision: 1.0
+  recall: 1.0
+environment:
+  local_python: 3.13.5
+  ci_python: ["3.11", "3.13"]
+  acquisition_network: GitHub Actions HTTPS
+  evaluation_network_required: false
+random_seed: none
+known_limitations:
+  - one JOSS issue
+  - one adjudicator
+  - current default branches rather than publication tags
+  - optional CFF version field
+  - no downstream citation or maintainer-impact measurement
+  - limited manifest ecosystem coverage
