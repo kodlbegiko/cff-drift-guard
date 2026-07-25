@@ -33,7 +33,7 @@ jobs:
           cat .research-bootstrap/part-* | tr -d '\n' > /tmp/issue-121.b64
           echo '120702d69ee057f44608c2136ff54222b9b1ef9d880d5d44151cad25d77b4f22  /tmp/issue-121.b64' | sha256sum -c -
           base64 --decode /tmp/issue-121.b64 > /tmp/issue-121.tar.gz
-          echo '3671e845c4dba1b1565c47d4585bfec76b8920bfc78421bf231c1b46458e542f  /tmp/issue-121.tar.gz' | sha256sum -c -
+          echo '7cb69d577cc5cea451353c0e769e880eed0c234968d8f021c3d24867544441f7  /tmp/issue-121.tar.gz' | sha256sum -c -
           gzip -t /tmp/issue-121.tar.gz
           tar -xzf /tmp/issue-121.tar.gz
           rm -rf .research-bootstrap .github/workflows/bootstrap-issue-121.yml
