@@ -56,7 +56,9 @@ def classification_metrics(truth: list[bool], predictions: list[bool]) -> dict[s
     }
 
 
-def load_records(source_path: Path, adjudication_path: Path) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+def load_records(
+    source_path: Path, adjudication_path: Path
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     source_payload = json.loads(source_path.read_text(encoding="utf-8"))
     adjudication_payload = json.loads(adjudication_path.read_text(encoding="utf-8"))
     source_records = source_payload["records"]
@@ -74,7 +76,9 @@ def load_records(source_path: Path, adjudication_path: Path) -> tuple[list[dict[
     return source_records, adjudications
 
 
-def evaluate(source_path: Path, adjudication_path: Path) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+def evaluate(
+    source_path: Path, adjudication_path: Path
+) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     source_records, adjudications = load_records(source_path, adjudication_path)
     labels = {row["repository"]: row for row in adjudications}
     joined: list[dict[str, Any]] = []
@@ -150,7 +154,9 @@ def evaluate(source_path: Path, adjudication_path: Path) -> tuple[dict[str, Any]
         "adjudication_coverage": adjudication_coverage,
         "gates": gates,
         "sensitivity": {
-            "missing_version_only_rate_among_cff": version_missing_n / len(primary) if primary else None,
+            "missing_version_only_rate_among_cff": version_missing_n / len(primary)
+            if primary
+            else None,
             "drift_only_rate_among_cff": drift_n / len(primary) if primary else None,
             "drift_rate_among_comparable": drift_n / len(comparable) if comparable else None,
             "broader_missing_cff_or_specificity_gap_rate_among_github": (
@@ -176,10 +182,14 @@ def evaluate(source_path: Path, adjudication_path: Path) -> tuple[dict[str, Any]
     return result, joined
 
 
-def write_outputs(output_dir: Path, result: dict[str, Any], joined: list[dict[str, Any]]) -> dict[str, Any]:
+def write_outputs(
+    output_dir: Path, result: dict[str, Any], joined: list[dict[str, Any]]
+) -> dict[str, Any]:
     output_dir.mkdir(parents=True, exist_ok=True)
     deterministic_path = output_dir / "external-validation-results.json"
-    deterministic_path.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    deterministic_path.write_text(
+        json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
     csv_path = output_dir / "screening.csv"
     with csv_path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=list(joined[0]))
