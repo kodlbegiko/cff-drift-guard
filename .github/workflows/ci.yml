@@ -26,3 +26,14 @@ jobs:
       - run: PYTHONHASHSEED=0 cff-drift-guard benchmark --output-dir /tmp/results-a
       - run: PYTHONHASHSEED=321 cff-drift-guard benchmark --output-dir /tmp/results-b
       - run: diff -u /tmp/results-a/pilot-results-deterministic.json /tmp/results-b/pilot-results-deterministic.json
+      - run: >-
+          PYTHONHASHSEED=0 python scripts/evaluate_issue_121_specificity.py
+          --acquisition data/issue-121/acquisition-deterministic.json
+          --adjudications data/issue-121/adjudications.json
+          --output-dir /tmp/issue121-a
+      - run: >-
+          PYTHONHASHSEED=321 python scripts/evaluate_issue_121_specificity.py
+          --acquisition data/issue-121/acquisition-deterministic.json
+          --adjudications data/issue-121/adjudications.json
+          --output-dir /tmp/issue121-b
+      - run: diff -u /tmp/issue121-a/external-validation-results.json /tmp/issue121-b/external-validation-results.json
