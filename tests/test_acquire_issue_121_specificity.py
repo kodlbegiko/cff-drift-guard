@@ -87,7 +87,14 @@ def test_parse_pyproject_dynamic() -> None:
 
 
 def test_parse_description() -> None:
-    result = acquire.parse_description("Package: demo\nVersion: 0.4.1\n", "c" * 40)
+    text = (
+        "Package: demo\n"
+        "Version: 0.4.1\n"
+        "Authors@R: c(\n"
+        "    person(\"Ada\", \"Lovelace\")\n"
+        ")\n"
+    )
+    result = acquire.parse_description(text, "c" * 40)
     assert result.package_name == "demo"
     assert result.version == "0.4.1"
 
