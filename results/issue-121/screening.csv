@@ -1,0 +1,40 @@
+order,repository,host,acquisition_status,cff_version,manifest_path,manifest_version,predicted_gap,primary_denominator,manual_gap,adjudication,notes
+1,GroupiSP/himap,github,DRIFT,v1.3.0,pyproject.toml,1.4.0,True,True,True,CROSS_FILE_DRIFT_CONFIRMED,CFF v1.3.0 versus pyproject.toml 1.4.0; both describe the HiMAP software package.
+2,Becksteinlab/zarrtraj,github,VERSION_MISSING,,pyproject.toml,,True,True,True,VERSION_SPECIFICITY_GAP_CONFIRMED,No top-level software version. This is not labelled a CFF schema violation or a proven maintainer defect.
+3,CEA-MetroCarac/cdsaxs,github,CFF_MISSING,,,,,False,,OUT_OF_SCOPE,Excluded from the preregistered root-CFF denominator.
+4,KoslickiLab/YACHT,github,CFF_MISSING,,,,,False,,OUT_OF_SCOPE,Excluded from the preregistered root-CFF denominator.
+5,abinit/abipy,github,CFF_MISSING,,,,,False,,OUT_OF_SCOPE,Excluded from the preregistered root-CFF denominator.
+6,JosephBrunet/cardiotensor,github,VERSION_MISSING,,pyproject.toml,1.1.9,True,True,True,VERSION_SPECIFICITY_GAP_CONFIRMED,No top-level software version. This is not labelled a CFF schema violation or a proven maintainer defect.
+7,SWeav02/baderkit,github,CFF_MISSING,,,,,False,,OUT_OF_SCOPE,Excluded from the preregistered root-CFF denominator.
+8,tue-bmd/zea,github,VERSION_MISSING,,pyproject.toml,0.1.4,True,True,True,VERSION_SPECIFICITY_GAP_CONFIRMED,No top-level software version. This is not labelled a CFF schema violation or a proven maintainer defect.
+9,BarinthusBio/HLAfreq,github,CFF_MISSING,,,,,False,,OUT_OF_SCOPE,Excluded from the preregistered root-CFF denominator.
+10,NPLinker/nplinker,github,MATCH,2.0.3,pyproject.toml,2.0.3,False,True,False,VERSION_SPECIFICITY_PRESENT,Top-level CFF software version is present.
+11,ncsa/NEAT,github,VERSION_MISSING,,pyproject.toml,,True,True,True,VERSION_SPECIFICITY_GAP_CONFIRMED,No top-level software version. This is not labelled a CFF schema violation or a proven maintainer defect.
+12,OpenBfS/UncertRadio,github,VERSION_MISSING,,,,True,True,True,VERSION_SPECIFICITY_GAP_CONFIRMED,No top-level software version. This is not labelled a CFF schema violation or a proven maintainer defect.
+13,GRTLCollaboration/GRTresna,github,CFF_MISSING,,,,,False,,OUT_OF_SCOPE,Excluded from the preregistered root-CFF denominator.
+14,omvatten/qdiv,github,VERSION_MISSING,,pyproject.toml,4.0.6,True,True,True,VERSION_SPECIFICITY_GAP_CONFIRMED,No top-level software version. This is not labelled a CFF schema violation or a proven maintainer defect.
+15,gitlab.fysik.su.se/poleval/poleval,gitlab,NON_GITHUB,,,,,False,,OUT_OF_SCOPE,Excluded from the preregistered root-CFF denominator.
+16,stschiff/sequenceTools,github,CFF_MISSING,,,,,False,,OUT_OF_SCOPE,Excluded from the preregistered root-CFF denominator.
+17,artefactory/woodtapper,github,VERSION_MISSING,,pyproject.toml,0.0.14,True,True,True,VERSION_SPECIFICITY_GAP_CONFIRMED,No top-level software version. This is not labelled a CFF schema violation or a proven maintainer defect.
+18,dragoon-rs/komodo,github,VERSION_MISSING,,Cargo.toml,1.2.0,True,True,True,VERSION_SPECIFICITY_GAP_CONFIRMED,No top-level software version. This is not labelled a CFF schema violation or a proven maintainer defect.
+19,rahulumrao/sparc,github,CFF_MISSING,,,,,False,,OUT_OF_SCOPE,Excluded from the preregistered root-CFF denominator.
+20,cwru-sdle/geospatialsuite,github,MATCH,0.2.0,DESCRIPTION,0.2.0,False,True,False,VERSION_SPECIFICITY_PRESENT,Top-level CFF software version is present.
+21,yungselm/multimoda-rs,github,MANIFEST_AMBIGUOUS,0.3.2,,,False,True,False,VERSION_SPECIFICITY_PRESENT,Top-level CFF software version is present. Cross-file consistency remains unresolved and is not counted as drift.
+22,juanmarcosmoreno-arch/cowfootR,github,CFF_MISSING,,,,,False,,OUT_OF_SCOPE,Excluded from the preregistered root-CFF denominator.
+23,DanielChou0916/felino,github,CFF_MISSING,,,,,False,,OUT_OF_SCOPE,Excluded from the preregistered root-CFF denominator.
+24,SchmidtDSE/kigali-sim,github,CFF_MISSING,,,,,False,,OUT_OF_SCOPE,Excluded from the preregistered root-CFF denominator.
+25,youssef-mesri/sofia-mesh,github,MATCH,1.0.0,pyproject.toml,1.0.0,False,True,False,VERSION_SPECIFICITY_PRESENT,Top-level CFF software version is present.
+26,hannes-holey/GaPFlow,github,VERSION_MISSING,,pyproject.toml,,True,True,True,VERSION_SPECIFICITY_GAP_CONFIRMED,No top-level software version. This is not labelled a CFF schema violation or a proven maintainer defect.
+27,rahildoshi97/materforge,github,MANIFEST_DYNAMIC,0.10.0,pyproject.toml,,False,True,False,VERSION_SPECIFICITY_PRESENT,Top-level CFF software version is present. Cross-file consistency remains unresolved and is not counted as drift.
+28,DifferentiableUniverseInitiative/jaxDecomp,github,MANIFEST_DYNAMIC,0.2.9,pyproject.toml,,False,True,False,VERSION_SPECIFICITY_PRESENT,Top-level CFF software version is present. Cross-file consistency remains unresolved and is not counted as drift.
+29,chrissoria/cat-llm,github,MANIFEST_DYNAMIC,3.0.0,pyproject.toml,,False,True,False,VERSION_SPECIFICITY_PRESENT,Top-level CFF software version is present. Cross-file consistency remains unresolved and is not counted as drift.
+30,brodie-neuro/WAND-practice-and-fatigue-induction,github,CFF_MISSING,,,,,False,,OUT_OF_SCOPE,Excluded from the preregistered root-CFF denominator.
+31,aglucaci/Analysis-of-Orthologous-Collections,github,CFF_MISSING,,,,,False,,OUT_OF_SCOPE,Excluded from the preregistered root-CFF denominator.
+32,jsakaluk/dySEM,github,VERSION_MISSING,,DESCRIPTION,2.1.0,True,True,True,VERSION_SPECIFICITY_GAP_CONFIRMED,No top-level software version. This is not labelled a CFF schema violation or a proven maintainer defect.
+33,anvaldes/sklearn-migrator,github,MANIFEST_MISSING,0.21.1,,,False,True,False,VERSION_SPECIFICITY_PRESENT,Top-level CFF software version is present. Cross-file consistency remains unresolved and is not counted as drift.
+34,boostorg/geometry,github,VERSION_MISSING,,,,True,True,True,VERSION_SPECIFICITY_GAP_CONFIRMED,No top-level software version. This is not labelled a CFF schema violation or a proven maintainer defect.
+35,IBM/ado,github,VERSION_MISSING,,pyproject.toml,,True,True,True,VERSION_SPECIFICITY_GAP_CONFIRMED,No top-level software version. This is not labelled a CFF schema violation or a proven maintainer defect.
+36,GESS-research-group/pyshbundle,github,CFF_MISSING,,,,,False,,OUT_OF_SCOPE,Excluded from the preregistered root-CFF denominator.
+37,cmmr/ecodive,github,VERSION_MISSING,,DESCRIPTION,2.3.0,True,True,True,VERSION_SPECIFICITY_GAP_CONFIRMED,No top-level software version. This is not labelled a CFF schema violation or a proven maintainer defect.
+38,mapme-initiative/mapme.biodiversity,github,CFF_MISSING,,,,,False,,OUT_OF_SCOPE,Excluded from the preregistered root-CFF denominator.
+39,cmyoo/cosmos,github,CFF_MISSING,,,,,False,,OUT_OF_SCOPE,Excluded from the preregistered root-CFF denominator.

@@ -1,0 +1,358 @@
+{
+  "adjudicated_after_acquisition": true,
+  "adjudicator_count": 1,
+  "protocol_version": "1.0",
+  "records": [
+    {
+      "adjudication": "CROSS_FILE_DRIFT_CONFIRMED",
+      "basis": "manual same-scope review of root CITATION.cff and pyproject.toml",
+      "manual_gap": true,
+      "notes": "CFF v1.3.0 versus pyproject.toml 1.4.0; both describe the HiMAP software package.",
+      "order": 1,
+      "primary_denominator": true,
+      "repository": "GroupiSP/himap"
+    },
+    {
+      "adjudication": "VERSION_SPECIFICITY_GAP_CONFIRMED",
+      "basis": "manual top-level key review plus frozen parser extraction",
+      "manual_gap": true,
+      "notes": "No top-level software version. This is not labelled a CFF schema violation or a proven maintainer defect.",
+      "order": 2,
+      "primary_denominator": true,
+      "repository": "Becksteinlab/zarrtraj"
+    },
+    {
+      "adjudication": "OUT_OF_SCOPE",
+      "basis": "non-GitHub or no root CITATION.cff",
+      "manual_gap": null,
+      "notes": "Excluded from the preregistered root-CFF denominator.",
+      "order": 3,
+      "primary_denominator": false,
+      "repository": "CEA-MetroCarac/cdsaxs"
+    },
+    {
+      "adjudication": "OUT_OF_SCOPE",
+      "basis": "non-GitHub or no root CITATION.cff",
+      "manual_gap": null,
+      "notes": "Excluded from the preregistered root-CFF denominator.",
+      "order": 4,
+      "primary_denominator": false,
+      "repository": "KoslickiLab/YACHT"
+    },
+    {
+      "adjudication": "OUT_OF_SCOPE",
+      "basis": "non-GitHub or no root CITATION.cff",
+      "manual_gap": null,
+      "notes": "Excluded from the preregistered root-CFF denominator.",
+      "order": 5,
+      "primary_denominator": false,
+      "repository": "abinit/abipy"
+    },
+    {
+      "adjudication": "VERSION_SPECIFICITY_GAP_CONFIRMED",
+      "basis": "manual top-level key review plus frozen parser extraction",
+      "manual_gap": true,
+      "notes": "No top-level software version. This is not labelled a CFF schema violation or a proven maintainer defect.",
+      "order": 6,
+      "primary_denominator": true,
+      "repository": "JosephBrunet/cardiotensor"
+    },
+    {
+      "adjudication": "OUT_OF_SCOPE",
+      "basis": "non-GitHub or no root CITATION.cff",
+      "manual_gap": null,
+      "notes": "Excluded from the preregistered root-CFF denominator.",
+      "order": 7,
+      "primary_denominator": false,
+      "repository": "SWeav02/baderkit"
+    },
+    {
+      "adjudication": "VERSION_SPECIFICITY_GAP_CONFIRMED",
+      "basis": "manual top-level key review plus frozen parser extraction",
+      "manual_gap": true,
+      "notes": "No top-level software version. This is not labelled a CFF schema violation or a proven maintainer defect.",
+      "order": 8,
+      "primary_denominator": true,
+      "repository": "tue-bmd/zea"
+    },
+    {
+      "adjudication": "OUT_OF_SCOPE",
+      "basis": "non-GitHub or no root CITATION.cff",
+      "manual_gap": null,
+      "notes": "Excluded from the preregistered root-CFF denominator.",
+      "order": 9,
+      "primary_denominator": false,
+      "repository": "BarinthusBio/HLAfreq"
+    },
+    {
+      "adjudication": "VERSION_SPECIFICITY_PRESENT",
+      "basis": "manual top-level key review plus conservative scope rule",
+      "manual_gap": false,
+      "notes": "Top-level CFF software version is present.",
+      "order": 10,
+      "primary_denominator": true,
+      "repository": "NPLinker/nplinker"
+    },
+    {
+      "adjudication": "VERSION_SPECIFICITY_GAP_CONFIRMED",
+      "basis": "manual top-level key review plus frozen parser extraction",
+      "manual_gap": true,
+      "notes": "No top-level software version. This is not labelled a CFF schema violation or a proven maintainer defect.",
+      "order": 11,
+      "primary_denominator": true,
+      "repository": "ncsa/NEAT"
+    },
+    {
+      "adjudication": "VERSION_SPECIFICITY_GAP_CONFIRMED",
+      "basis": "manual top-level key review plus frozen parser extraction",
+      "manual_gap": true,
+      "notes": "No top-level software version. This is not labelled a CFF schema violation or a proven maintainer defect.",
+      "order": 12,
+      "primary_denominator": true,
+      "repository": "OpenBfS/UncertRadio"
+    },
+    {
+      "adjudication": "OUT_OF_SCOPE",
+      "basis": "non-GitHub or no root CITATION.cff",
+      "manual_gap": null,
+      "notes": "Excluded from the preregistered root-CFF denominator.",
+      "order": 13,
+      "primary_denominator": false,
+      "repository": "GRTLCollaboration/GRTresna"
+    },
+    {
+      "adjudication": "VERSION_SPECIFICITY_GAP_CONFIRMED",
+      "basis": "manual top-level key review plus frozen parser extraction",
+      "manual_gap": true,
+      "notes": "No top-level software version. This is not labelled a CFF schema violation or a proven maintainer defect.",
+      "order": 14,
+      "primary_denominator": true,
+      "repository": "omvatten/qdiv"
+    },
+    {
+      "adjudication": "OUT_OF_SCOPE",
+      "basis": "non-GitHub or no root CITATION.cff",
+      "manual_gap": null,
+      "notes": "Excluded from the preregistered root-CFF denominator.",
+      "order": 15,
+      "primary_denominator": false,
+      "repository": "gitlab.fysik.su.se/poleval/poleval"
+    },
+    {
+      "adjudication": "OUT_OF_SCOPE",
+      "basis": "non-GitHub or no root CITATION.cff",
+      "manual_gap": null,
+      "notes": "Excluded from the preregistered root-CFF denominator.",
+      "order": 16,
+      "primary_denominator": false,
+      "repository": "stschiff/sequenceTools"
+    },
+    {
+      "adjudication": "VERSION_SPECIFICITY_GAP_CONFIRMED",
+      "basis": "manual top-level key review plus frozen parser extraction",
+      "manual_gap": true,
+      "notes": "No top-level software version. This is not labelled a CFF schema violation or a proven maintainer defect.",
+      "order": 17,
+      "primary_denominator": true,
+      "repository": "artefactory/woodtapper"
+    },
+    {
+      "adjudication": "VERSION_SPECIFICITY_GAP_CONFIRMED",
+      "basis": "manual top-level key review plus frozen parser extraction",
+      "manual_gap": true,
+      "notes": "No top-level software version. This is not labelled a CFF schema violation or a proven maintainer defect.",
+      "order": 18,
+      "primary_denominator": true,
+      "repository": "dragoon-rs/komodo"
+    },
+    {
+      "adjudication": "OUT_OF_SCOPE",
+      "basis": "non-GitHub or no root CITATION.cff",
+      "manual_gap": null,
+      "notes": "Excluded from the preregistered root-CFF denominator.",
+      "order": 19,
+      "primary_denominator": false,
+      "repository": "rahulumrao/sparc"
+    },
+    {
+      "adjudication": "VERSION_SPECIFICITY_PRESENT",
+      "basis": "manual top-level key review plus conservative scope rule",
+      "manual_gap": false,
+      "notes": "Top-level CFF software version is present.",
+      "order": 20,
+      "primary_denominator": true,
+      "repository": "cwru-sdle/geospatialsuite"
+    },
+    {
+      "adjudication": "VERSION_SPECIFICITY_PRESENT",
+      "basis": "manual top-level key review plus conservative scope rule",
+      "manual_gap": false,
+      "notes": "Top-level CFF software version is present. Cross-file consistency remains unresolved and is not counted as drift.",
+      "order": 21,
+      "primary_denominator": true,
+      "repository": "yungselm/multimoda-rs"
+    },
+    {
+      "adjudication": "OUT_OF_SCOPE",
+      "basis": "non-GitHub or no root CITATION.cff",
+      "manual_gap": null,
+      "notes": "Excluded from the preregistered root-CFF denominator.",
+      "order": 22,
+      "primary_denominator": false,
+      "repository": "juanmarcosmoreno-arch/cowfootR"
+    },
+    {
+      "adjudication": "OUT_OF_SCOPE",
+      "basis": "non-GitHub or no root CITATION.cff",
+      "manual_gap": null,
+      "notes": "Excluded from the preregistered root-CFF denominator.",
+      "order": 23,
+      "primary_denominator": false,
+      "repository": "DanielChou0916/felino"
+    },
+    {
+      "adjudication": "OUT_OF_SCOPE",
+      "basis": "non-GitHub or no root CITATION.cff",
+      "manual_gap": null,
+      "notes": "Excluded from the preregistered root-CFF denominator.",
+      "order": 24,
+      "primary_denominator": false,
+      "repository": "SchmidtDSE/kigali-sim"
+    },
+    {
+      "adjudication": "VERSION_SPECIFICITY_PRESENT",
+      "basis": "manual top-level key review plus conservative scope rule",
+      "manual_gap": false,
+      "notes": "Top-level CFF software version is present.",
+      "order": 25,
+      "primary_denominator": true,
+      "repository": "youssef-mesri/sofia-mesh"
+    },
+    {
+      "adjudication": "VERSION_SPECIFICITY_GAP_CONFIRMED",
+      "basis": "manual top-level key review plus frozen parser extraction",
+      "manual_gap": true,
+      "notes": "No top-level software version. This is not labelled a CFF schema violation or a proven maintainer defect.",
+      "order": 26,
+      "primary_denominator": true,
+      "repository": "hannes-holey/GaPFlow"
+    },
+    {
+      "adjudication": "VERSION_SPECIFICITY_PRESENT",
+      "basis": "manual top-level key review plus conservative scope rule",
+      "manual_gap": false,
+      "notes": "Top-level CFF software version is present. Cross-file consistency remains unresolved and is not counted as drift.",
+      "order": 27,
+      "primary_denominator": true,
+      "repository": "rahildoshi97/materforge"
+    },
+    {
+      "adjudication": "VERSION_SPECIFICITY_PRESENT",
+      "basis": "manual top-level key review plus conservative scope rule",
+      "manual_gap": false,
+      "notes": "Top-level CFF software version is present. Cross-file consistency remains unresolved and is not counted as drift.",
+      "order": 28,
+      "primary_denominator": true,
+      "repository": "DifferentiableUniverseInitiative/jaxDecomp"
+    },
+    {
+      "adjudication": "VERSION_SPECIFICITY_PRESENT",
+      "basis": "manual top-level key review plus conservative scope rule",
+      "manual_gap": false,
+      "notes": "Top-level CFF software version is present. Cross-file consistency remains unresolved and is not counted as drift.",
+      "order": 29,
+      "primary_denominator": true,
+      "repository": "chrissoria/cat-llm"
+    },
+    {
+      "adjudication": "OUT_OF_SCOPE",
+      "basis": "non-GitHub or no root CITATION.cff",
+      "manual_gap": null,
+      "notes": "Excluded from the preregistered root-CFF denominator.",
+      "order": 30,
+      "primary_denominator": false,
+      "repository": "brodie-neuro/WAND-practice-and-fatigue-induction"
+    },
+    {
+      "adjudication": "OUT_OF_SCOPE",
+      "basis": "non-GitHub or no root CITATION.cff",
+      "manual_gap": null,
+      "notes": "Excluded from the preregistered root-CFF denominator.",
+      "order": 31,
+      "primary_denominator": false,
+      "repository": "aglucaci/Analysis-of-Orthologous-Collections"
+    },
+    {
+      "adjudication": "VERSION_SPECIFICITY_GAP_CONFIRMED",
+      "basis": "manual top-level key review plus frozen parser extraction",
+      "manual_gap": true,
+      "notes": "No top-level software version. This is not labelled a CFF schema violation or a proven maintainer defect.",
+      "order": 32,
+      "primary_denominator": true,
+      "repository": "jsakaluk/dySEM"
+    },
+    {
+      "adjudication": "VERSION_SPECIFICITY_PRESENT",
+      "basis": "manual top-level key review plus conservative scope rule",
+      "manual_gap": false,
+      "notes": "Top-level CFF software version is present. Cross-file consistency remains unresolved and is not counted as drift.",
+      "order": 33,
+      "primary_denominator": true,
+      "repository": "anvaldes/sklearn-migrator"
+    },
+    {
+      "adjudication": "VERSION_SPECIFICITY_GAP_CONFIRMED",
+      "basis": "manual top-level key review plus frozen parser extraction",
+      "manual_gap": true,
+      "notes": "No top-level software version. This is not labelled a CFF schema violation or a proven maintainer defect.",
+      "order": 34,
+      "primary_denominator": true,
+      "repository": "boostorg/geometry"
+    },
+    {
+      "adjudication": "VERSION_SPECIFICITY_GAP_CONFIRMED",
+      "basis": "manual top-level key review plus frozen parser extraction",
+      "manual_gap": true,
+      "notes": "No top-level software version. This is not labelled a CFF schema violation or a proven maintainer defect.",
+      "order": 35,
+      "primary_denominator": true,
+      "repository": "IBM/ado"
+    },
+    {
+      "adjudication": "OUT_OF_SCOPE",
+      "basis": "non-GitHub or no root CITATION.cff",
+      "manual_gap": null,
+      "notes": "Excluded from the preregistered root-CFF denominator.",
+      "order": 36,
+      "primary_denominator": false,
+      "repository": "GESS-research-group/pyshbundle"
+    },
+    {
+      "adjudication": "VERSION_SPECIFICITY_GAP_CONFIRMED",
+      "basis": "manual top-level key review plus frozen parser extraction",
+      "manual_gap": true,
+      "notes": "No top-level software version. This is not labelled a CFF schema violation or a proven maintainer defect.",
+      "order": 37,
+      "primary_denominator": true,
+      "repository": "cmmr/ecodive"
+    },
+    {
+      "adjudication": "OUT_OF_SCOPE",
+      "basis": "non-GitHub or no root CITATION.cff",
+      "manual_gap": null,
+      "notes": "Excluded from the preregistered root-CFF denominator.",
+      "order": 38,
+      "primary_denominator": false,
+      "repository": "mapme-initiative/mapme.biodiversity"
+    },
+    {
+      "adjudication": "OUT_OF_SCOPE",
+      "basis": "non-GitHub or no root CITATION.cff",
+      "manual_gap": null,
+      "notes": "Excluded from the preregistered root-CFF denominator.",
+      "order": 39,
+      "primary_denominator": false,
+      "repository": "cmyoo/cosmos"
+    }
+  ]
+}

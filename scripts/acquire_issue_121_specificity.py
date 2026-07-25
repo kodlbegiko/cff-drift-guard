@@ -20,10 +20,11 @@ import time
 import tomllib
 import urllib.error
 import urllib.request
+from collections.abc import Callable
 from dataclasses import asdict, dataclass
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any
 
 SOURCE_REPOSITORY = "kodlbegiko/research-readme-smoketest"
 SOURCE_REF = "5efa7e6b79dbd10b8e8439ca60bea9e43f27a00f"

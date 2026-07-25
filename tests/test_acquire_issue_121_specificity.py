@@ -87,13 +87,7 @@ def test_parse_pyproject_dynamic() -> None:
 
 
 def test_parse_description() -> None:
-    text = (
-        "Package: demo\n"
-        "Version: 0.4.1\n"
-        "Authors@R: c(\n"
-        "    person(\"Ada\", \"Lovelace\")\n"
-        ")\n"
-    )
+    text = 'Package: demo\nVersion: 0.4.1\nAuthors@R: c(\n    person("Ada", "Lovelace")\n)\n'
     result = acquire.parse_description(text, "c" * 40)
     assert result.package_name == "demo"
     assert result.version == "0.4.1"
@@ -110,8 +104,7 @@ def test_summary_threshold_and_counts() -> None:
         {"host": "github", "status": "DRIFT", "specificity_gap": True},
         {"host": "github", "status": "MATCH", "specificity_gap": False},
     ] + [
-        {"host": "github", "status": "MANIFEST_DYNAMIC", "specificity_gap": False}
-        for _ in range(7)
+        {"host": "github", "status": "MANIFEST_DYNAMIC", "specificity_gap": False} for _ in range(7)
     ]
     summary = acquire.summarize(records, {"source_sha256": "x"})
     assert summary["cff_present_n"] == 10
