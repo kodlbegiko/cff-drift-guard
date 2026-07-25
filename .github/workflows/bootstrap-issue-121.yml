@@ -42,10 +42,13 @@ jobs:
           name: issue-121-bootstrap-diagnostic
           path: /tmp/bootstrap-diagnostic
           if-no-files-found: error
-      - name: Materialize staged research payload
+      - name: Materialize non-workflow research payload
         run: |
           tar -xzf /tmp/issue-121.tar.gz
-          rm -rf .research-bootstrap .github/workflows/bootstrap-issue-121.yml
+          rm -rf .research-bootstrap
+          git checkout HEAD -- .github/workflows/ci.yml .github/workflows/issue-121-acquisition.yml
+          rm -f .github/workflows/bootstrap-issue-121.yml
+          git checkout HEAD -- .github/workflows/bootstrap-issue-121.yml
       - name: Commit research outputs
         run: |
           git config user.name github-actions[bot]
