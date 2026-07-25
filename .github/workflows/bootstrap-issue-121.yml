@@ -26,7 +26,7 @@ jobs:
         with:
           ref: research/issue-121-specificity-validation
           fetch-depth: 0
-      - name: Decode staged research payload from exact chunks
+      - name: Decode staged research payload from verified chunks
         run: |
           mkdir -p /tmp/bootstrap-diagnostic
           sha256sum .research-bootstrap/part-* | tee /tmp/bootstrap-diagnostic/part-hashes.txt
