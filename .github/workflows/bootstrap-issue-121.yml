@@ -1,0 +1,34 @@
+name: bootstrap issue-121 research files
+
+on:
+  push:
+    branches:
+      - research/issue-121-specificity-validation
+    paths:
+      - .github/workflows/bootstrap-issue-121.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/issue-121-specificity-validation
+          fetch-depth: 0
+      - name: Materialize staged research payload
+        run: |
+          cat .research-bootstrap/part-* | tr -d '\n' | base64 --decode > /tmp/issue-121.tar.gz
+          tar -xzf /tmp/issue-121.tar.gz
+          rm -rf .research-bootstrap .github/workflows/bootstrap-issue-121.yml
+      - name: Commit research outputs
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git commit -m "research: publish issue-121 external validation"
+          git push origin HEAD:research/issue-121-specificity-validation
