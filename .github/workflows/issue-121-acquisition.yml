@@ -8,6 +8,11 @@ on:
       - scripts/acquire_issue_121_specificity.py
       - tests/test_acquire_issue_121_specificity.py
       - .github/workflows/issue-121-acquisition.yml
+  pull_request:
+    paths:
+      - scripts/acquire_issue_121_specificity.py
+      - tests/test_acquire_issue_121_specificity.py
+      - .github/workflows/issue-121-acquisition.yml
   workflow_dispatch:
 
 permissions:
