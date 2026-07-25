@@ -24,13 +24,24 @@ jobs:
         with:
           ref: research/issue-121-specificity-validation
           fetch-depth: 0
+      - name: Check staged research payload
+        run: |
+          mkdir -p /tmp/bootstrap-diagnostic
+          sha256sum .research-bootstrap/part-* | tee /tmp/bootstrap-diagnostic/part-hashes.txt
+          cat .research-bootstrap/part-* | tr -d '\n' > /tmp/issue-121.b64
+          sha256sum /tmp/issue-121.b64 | tee /tmp/bootstrap-diagnostic/combined-hash.txt
+          base64 --decode /tmp/issue-121.b64 > /tmp/issue-121.tar.gz
+          sha256sum /tmp/issue-121.tar.gz | tee /tmp/bootstrap-diagnostic/archive-hash.txt
+          gzip -t /tmp/issue-121.tar.gz
+      - name: Upload bootstrap diagnostic
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: issue-121-bootstrap-diagnostic
+          path: /tmp/bootstrap-diagnostic
+          if-no-files-found: error
       - name: Materialize staged research payload
         run: |
-          sha256sum .research-bootstrap/part-*
-          cat .research-bootstrap/part-* | tr -d '\n' > /tmp/issue-121.b64
-          sha256sum /tmp/issue-121.b64
-          base64 --decode /tmp/issue-121.b64 > /tmp/issue-121.tar.gz
-          gzip -t /tmp/issue-121.tar.gz
           tar -xzf /tmp/issue-121.tar.gz
           rm -rf .research-bootstrap .github/workflows/bootstrap-issue-121.yml
       - name: Commit research outputs
