@@ -149,11 +149,16 @@ def parse_description(text: str, sha: str) -> Manifest:
         if raw.startswith((" ", "\t")) and current:
             fields[current] += " " + raw.strip()
             continue
-        match = re.match(r"^([A-Za-z][A-Za-z0-9-]*)\s*:\s*(.*)$", raw)
+        match = re.match(r"^([A-Za-z][A-Za-z0-9@._-]*)\s*:\s*(.*)$", raw)
         if match:
             current = match.group(1)
             fields[current] = match.group(2).strip()
-    return Manifest("DESCRIPTION", fields.get("Version"), package_name=fields.get("Package"), blob_sha=sha)
+    return Manifest(
+        "DESCRIPTION",
+        fields.get("Version"),
+        package_name=fields.get("Package"),
+        blob_sha=sha,
+    )
 
 
 def parse_cargo(text: str, sha: str) -> Manifest:
@@ -366,7 +371,12 @@ def acquire(token: str | None) -> tuple[list[dict[str, Any]], dict[str, Any]]:
                 continue
             try:
                 manifests.append(PARSERS[path](payload.text, payload.sha))
-            except (json.JSONDecodeError, tomllib.TOMLDecodeError, UnicodeDecodeError, ValueError) as exc:
+            except (
+                json.JSONDecodeError,
+                tomllib.TOMLDecodeError,
+                UnicodeDecodeError,
+                ValueError,
+            ) as exc:
                 parse_errors.append({"path": path, "error": type(exc).__name__})
         classification = classify(cff, manifests)
         records.append({**base, **classification, "manifest_parse_errors": parse_errors})
@@ -395,7 +405,8 @@ def summarize(records: list[dict[str, Any]], source: dict[str, Any]) -> dict[str
         "study_type": "preregistered out-of-sample exploratory validation",
         "research_question": (
             "Among JOSS issue-121 GitHub repositories with a root CITATION.cff, how often does "
-            "the file fail version specificity because its top-level software version is missing or "
+            "the file fail version specificity because its top-level software version is "
+            "missing or "
             "disagrees with a unique static root package manifest?"
         ),
         "source": source,
