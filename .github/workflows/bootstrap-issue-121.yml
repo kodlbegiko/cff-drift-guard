@@ -5,9 +5,11 @@ on:
     branches:
       - research/issue-121-specificity-validation
     paths:
+      - .research-bootstrap/**
       - .github/workflows/bootstrap-issue-121.yml
   pull_request:
     paths:
+      - .research-bootstrap/**
       - .github/workflows/bootstrap-issue-121.yml
   workflow_dispatch:
 
@@ -24,24 +26,15 @@ jobs:
         with:
           ref: research/issue-121-specificity-validation
           fetch-depth: 0
-      - name: Check staged research payload
+      - name: Verify and materialize staged research payload
         run: |
           mkdir -p /tmp/bootstrap-diagnostic
           sha256sum .research-bootstrap/part-* | tee /tmp/bootstrap-diagnostic/part-hashes.txt
           cat .research-bootstrap/part-* | tr -d '\n' > /tmp/issue-121.b64
-          sha256sum /tmp/issue-121.b64 | tee /tmp/bootstrap-diagnostic/combined-hash.txt
+          echo '120702d69ee057f44608c2136ff54222b9b1ef9d880d5d44151cad25d77b4f22  /tmp/issue-121.b64' | sha256sum -c -
           base64 --decode /tmp/issue-121.b64 > /tmp/issue-121.tar.gz
-          sha256sum /tmp/issue-121.tar.gz | tee /tmp/bootstrap-diagnostic/archive-hash.txt
+          echo '3671e845c4dba1b1565c47d4585bfec76b8920bfc78421bf231c1b46458e542f  /tmp/issue-121.tar.gz' | sha256sum -c -
           gzip -t /tmp/issue-121.tar.gz
-      - name: Upload bootstrap diagnostic
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: issue-121-bootstrap-diagnostic
-          path: /tmp/bootstrap-diagnostic
-          if-no-files-found: error
-      - name: Materialize staged research payload
-        run: |
           tar -xzf /tmp/issue-121.tar.gz
           rm -rf .research-bootstrap .github/workflows/bootstrap-issue-121.yml
       - name: Commit research outputs
