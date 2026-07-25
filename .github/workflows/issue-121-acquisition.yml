@@ -29,11 +29,15 @@ jobs:
           python-version: '3.13'
       - name: Install development dependencies
         run: python -m pip install -e ".[dev]"
+      - name: Format focused test for diagnostic artifact
+        run: |
+          ruff format tests/test_acquire_issue_121_specificity.py
+          mkdir -p acquired-issue-121
+          cp tests/test_acquire_issue_121_specificity.py acquired-issue-121/formatted-test.py
       - name: Run focused tests
         run: pytest -q tests/test_acquire_issue_121_specificity.py
       - name: Capture quality diagnostics
         run: |
-          mkdir -p acquired-issue-121
           ruff check . --output-format=json > acquired-issue-121/ruff-check.json || true
           ruff format --check . > acquired-issue-121/ruff-format.txt 2>&1 || true
       - name: Acquire frozen issue-121 metadata
