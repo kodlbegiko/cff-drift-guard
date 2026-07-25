@@ -32,6 +32,25 @@ jobs:
       - name: Enforce Ruff check
         if: steps.ruff.outcome != 'success'
         run: exit 1
+      - name: Generate Ruff format remediation
+        id: format
+        continue-on-error: true
+        run: |
+          ruff format scripts/acquire_issue_121_specificity.py scripts/evaluate_issue_121_specificity.py tests/test_acquire_issue_121_specificity.py tests/test_evaluate_issue_121_specificity.py
+          mkdir -p /tmp/ruff-formatted/scripts /tmp/ruff-formatted/tests
+          cp scripts/acquire_issue_121_specificity.py scripts/evaluate_issue_121_specificity.py /tmp/ruff-formatted/scripts/
+          cp tests/test_acquire_issue_121_specificity.py tests/test_evaluate_issue_121_specificity.py /tmp/ruff-formatted/tests/
+          git diff --exit-code -- scripts/acquire_issue_121_specificity.py scripts/evaluate_issue_121_specificity.py tests/test_acquire_issue_121_specificity.py tests/test_evaluate_issue_121_specificity.py
+      - name: Upload Ruff-formatted files
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ruff-formatted-${{ matrix.python-version }}
+          path: /tmp/ruff-formatted
+          if-no-files-found: error
+      - name: Enforce committed Ruff format
+        if: steps.format.outcome != 'success'
+        run: exit 1
       - run: ruff format --check .
       - run: mypy src
       - run: pytest --cov --cov-report=term-missing
